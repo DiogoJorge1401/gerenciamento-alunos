@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmnls:th="http://www.thymeleaf.org">
+  <head>
+    <div th:replace="fragments/fragments :: head"></div>
+    <title>+ Form Aluno</title>
+  </head>
+  <body>
+    <div th:replace="fragments/fragments :: header"></div>
+    <div class="container" th:object="${student}">
+      <h4 th:if="*{id}==null">+ Inserir Aluno</h4>
+      <h4 th:if="*{id}!=null">+ Editar Aluno</h4>
+      <hr />
+      <form method="POST" action="/inserirAluno">
+        <input hidden th:field="*{id}" />
+        <div class="row">
+          <div class="col-md-6 form-group offset-md-3">
+            <div
+              class="alert alert-danger"
+              role="alert"
+              th:if="${#fields.hasErrors('name')}"
+            >
+              <label class="validation-message" th:errors="*{name}"></label>
+            </div>
+            <label for="">Nome do Aluno:</label>
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Ex. Jonivaldo Fernandes"
+              th:field="*{name}"
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 form-group offset-md-3">
+            <label for="">Selecione o Curso:</label>
+            <select class="form-select" th:field="*{course}">
+              <option
+                th:each="course : ${T(com.diogo.spring_project.Enums.Course).values()}"
+                th:value="${course}"
+                th:text="${course}"
+              ></option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 form-group offset-md-3">
+            <label for="">Selecione o Status:</label>
+            <select class="form-select" th:field="*{status}">
+              <option
+                th:each="status : ${T(com.diogo.spring_project.Enums.Status).values()}"
+                th:value="${status}"
+                th:text="${status}"
+              ></option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 form-group offset-md-3">
+            <label for="">Selecione o Turno:</label>
+            <select class="form-select" th:field="*{rotation}">
+              <option
+                th:each="rotation : ${T(com.diogo.spring_project.Enums.Rotation).values()}"
+                th:value="${rotation}"
+                th:text="${rotation}"
+              ></option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 form-group offset-md-3">
+            <div
+              class="alert alert-danger"
+              role="alert"
+              th:if="${#fields.hasErrors('registration')}"
+            >
+              <label
+                class="validation-message"
+                th:errors="*{registration}"
+              ></label>
+            </div>
+            <label for="">Gerar Matrícula:</label>
+            <input
+              th:if="*{id}!=null"
+              readonly
+              class="form-control"
+              th:field="*{registration}"
+              id="matricula"
+            />
+            <input
+              th:if="*{id}==null"
+              class="form-control"
+              th:field="*{registration}"
+              id="matricula"
+            />
+            <button
+              th:if="*{id}==null"
+              type="button"
+              onclick="generate()"
+              class="btn btn-outline-dark"
+              style="margin-top: 0.5rem"
+            >
+              Gerar
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 form-group offset-md-3">
+            <button type="submit" class="btn btn-outline-success">
+              SALVAR
+            </button>
+            <a class="btn btn-outline-danger" th:href="@{/index}">VOLTAR</a>
+          </div>
+        </div>
+      </form>
+    </div>
+    <script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <script th:replace="fragments/fragments :: navToggle"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

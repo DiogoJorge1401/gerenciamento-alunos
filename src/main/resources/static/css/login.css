@@ -1,0 +1,59 @@
+.Login-Form {
+  min-height: 39rem;
+  background-image: url("/img/wallpaper-bg-body.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+a{
+  text-decoration: none;
+}
+.Login-Form {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+}
+.main-div {
+  background-color: #fff;
+  border-radius: 2rem;
+  margin: 0 auto;
+  max-width: 50%;
+  padding: 3rem 5rem;
+}
+.form-control {
+  background-color: #f7f7f7;
+  border-radius: 1rem;
+  font-size: 1.1em;
+  height: 3rem;
+  line-height: 3rem;
+  border: 0.15rem solid #d4d4d4;
+}
+.input-group {
+  margin: .5rem;
+}
+.cadastro {
+  margin-top: 1rem;
+}
+.btn.btn-primary{
+  background-color: #512DA8;
+  border-color: #d4d4d4;
+  border-radius: .7rem;
+  font-size: 1.1em;
+  padding: 0;
+  height: 3rem;
+  width: 100%;
+  margin: .5rem 0;
+}
+.btn.btn-info{
+  background-color: #7e57c2;
+  color: #fff;
+  border-color: #d4d4d4;
+  border-radius: .7rem;
+  font-size: 1em;
+  padding: 0;
+  height: 2.5rem;
+  width: 50%;
+}

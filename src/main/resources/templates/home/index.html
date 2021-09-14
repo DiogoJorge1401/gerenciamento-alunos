@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmnls:th="http://www.thymeleaf.org">
+<html lang="pt-br" xmnls:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -11,35 +11,26 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/css/style.css" />
-    <title>Gabriel Locomoções</title>
+    <title>HOME</title>
   </head>
   <body>
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a href="#" class="navbar-brand">
-          <img src="/img/logo header-site.png" />
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navMobile"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div
-          id="navMobile"
-          class="navbar-collapse collapse justify-content-end"
-        >
-          <a class="nav-item nav-link">HOME</a>
-          <a class="nav-item nav-link">CADASTRAR ALUNO</a>
-          <a class="nav-item nav-link">PESQUISAR ALUNO</a>
-          <a class="nav-item nav-link exit">SAIR</a>
-        </div>
-      </nav>
-    </header>
-
+    <div
+      th:if="${ok}"
+      style="margin: 0;text-align: center;"
+      class="alert alert-warning alert-dismissible fade show"
+      role="alert"
+    >
+      <strong
+        >Seja Bem Vindo: <span th:text="${session.userLogged.user}"></span
+      ></strong>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div th:replace="fragments/fragments :: header"></div>
     <section
       class="neo-section"
       style="background-image: url('img/bg-index.jpg')"
@@ -48,24 +39,25 @@
       <div class="neo-container center">
         <h1 class="text-center">Sistema de Gerenciamento de Alunos</h1>
         <div class="botoes">
-          <div class="wm">
-            <h5 class="btn">CADASTRAR ALUNO</h5>
-          </div>
-          <div class="wm">
-            <h5 class="btn justify-content-center">ENCONTRAR ALUNO</h5>
-          </div>
+          <a th:href="@{/inserirAluno}">
+            <div class="wm">
+              <h5 class="btn">CADASTRAR ALUNO</h5>
+            </div>
+          </a>
+          <a th:href="@{/filtroAlunos}">
+            <div class="wm">
+              <h5 class="btn justify-content-center">ENCONTRAR ALUNO</h5>
+            </div>
+          </a>
           <div class="clear"></div>
         </div>
       </div>
     </section>
 
-    <footer>
-      <div class="footer">
-        <span>Todos os Direitos Reservados - 2021 &copy; Diogo Jorge</span>
-      </div>
-    </footer>
+    <div th:replace="fragments/fragments :: footer"></div>
 
     <script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
     <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <script th:replace="fragments/fragments :: navToggle"></script>
   </body>
 </html>

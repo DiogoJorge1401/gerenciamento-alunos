@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmnls:th="http://www.thymeleaf.org">
+  <head th:fragment="head">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script src="https://kit.fontawesome.com/006642858d.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,600&family=Ubuntu&family=Work+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <title></title>
+  </head>
+  <body>
+    <header th:fragment="header">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a th:href="@{/index}" class="navbar-brand">
+            <img src="/img/logo header-site.png" />
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+            onclick="test()"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            id="navbarNav"
+            class="collapse navbar-collapse justify-content-end itens"
+          >
+            <a class="nav-item nav-link" th:href="@{/index}"
+              ><i class="fas fa-home"></i> HOME</a
+            >
+            <a class="nav-item nav-link" th:href="@{/inserirAluno}"
+              ><i class="fas fa-user-graduate"></i> CADASTRAR ALUNO</a
+            >
+            <a class="nav-item nav-link" th:href="@{/filtroAlunos}"
+              ><i class="fas fa-search"></i> PESQUISAR ALUNO</a
+            >
+            <form action="/logout" method="post">
+              <button class="nav-item nav-link exit">
+                <i class="fas fa-times"></i> SAIR
+              </button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <footer th:fragment="footer">
+      <div class="footer">
+        <span>Todos os Direitos Reservados - 2021 &copy; Diogo Jorge</span>
+      </div>
+    </footer>
+    <script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <script th:fragment="navToggle">
+      let on = true;
+      function check() {
+        let widht = document.documentElement.clientWidth;
+        if (on === false) {
+          if (widht >= 992) {
+            document.querySelector("nav").style.height = "90px";
+            document.querySelector(".itens").style.paddingTop = "0px";
+          }
+        }
+        return;
+      }
+      window.addEventListener("resize", check);
+      check();
+      function test() {
+        if (on) {
+          document.querySelector("nav").style.height = "240px";
+          document.querySelector(".itens").style.paddingTop = "30px";
+          on = false;
+          return;
+        }
+        document.querySelector("nav").style.height = "90px";
+        document.querySelector(".itens").style.padding = "0px";
+        on = true;
+      }
+    </script>
+  </body>
+</html>
